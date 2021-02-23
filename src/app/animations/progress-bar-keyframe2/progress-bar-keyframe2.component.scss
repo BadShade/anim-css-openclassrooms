@@ -1,0 +1,118 @@
+$prog-bar-dur: 2000ms;
+$prog-bar-delay: 1500ms;
+$cat-delay: $prog-bar-dur + $prog-bar-delay;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+.progress{
+  width: 500px;
+  border: solid;
+  height: 20px;
+  padding: 3px;
+  &__bar {
+    /* transform-origin  nous permet de déplacer le centre d'origine de notre transformation,
+    selon les valeurs que nous lui assignons (X, Y) en pourcentage ou px.
+    On peut aussi utiliser des mots clés CSS pour définir les points d’ancrage, comme  left  pour le mettre
+    sur le bord gauche, ou  right  pour le mettre à droite, top, bottom et center */
+    transform-origin: left;
+    transform: scaleX(0.5);
+    opacity: 0;
+    /*La fonction  cubic-bezier  fonctionne comme la fonction  rgb() : on indique une liste de valeurs numériques,
+     mais au lieu de transformer ces chiffres en couleur, la fonction  cubic-bezier  les transforme en courbe
+     d’accélération*/
+   // transition: transform 1000ms cubic-bezier(.32,0,.07,1);
+    width: 100%;
+    height: 100%;
+    background-color: #6FA531;
+    /* Déclenche l'animation au chargement du composant
+    $prog-bar-delay = la propriété animation-delay = un délai avant de lancer l'animation.
+    both = La propriété animation-fill-mode*/
+    animation: progress-bar $prog-bar-dur $prog-bar-delay both ;//cubic-bezier(.9,0,.1,1)
+    /*La propriété animation-fill-mode indique la façon dont une animation CSS doit appliquer les styles à sa
+     cible avant et après son exécution. Elle accepte 3 mots clés:
+     "backwards" : Backwards étend les valeurs de départ d'une animation pour la période de temps qui précède
+     le début de l'animation. Ce mot clé n'est utile que si nous avons un délai appliqué à nos animations.
+      "forwards" : A la fin de l'animation le composant gardera les valeurs de la dernière étape (keyframe).
+      "both": L'animation respectera les règles qui s'appliquent à forwards et backwards, entraînant ainsi l'extension
+      des propriétés de l'animation dans les deux directions.
+     */
+    //animation-fill-mode: both;
+    /* animation-timing-function permet d'assigner une courbe d'accélération à l'animation. */
+    //animation-timing-function: cubic-bezier(.9,0,.1,1)
+  }
+}
+
+/**
+Les @keyframes sont disponibles globalement, donc n'importe quel sélecteur dans notre fichier CSS peut les utiliser.
+Ils ne sont donc pas déclarés dans un sélecteur. Ils sont déclarés à la base du fichier css en utilisant l'opérateur
+ @keyframe, suivi du nom de notre choix, entre accolades ouverte et fermée.
+ Lorsque nous utilisons la règle @keyframes, nous déclarons un ensemble de keyframes.
+ Quelles que soient les propriétés CSS que nous plaçons à l'intérieur de notre animation  @keyframes,
+  elles remplaceront toutes les propriétés CSS existantes sur le sélecteur où elles sont assignées!
+ */
+@keyframes progress-bar {
+  /* Chaque keyframe est défini en utilisant son pourcentage, puis sa propre paire d'accolades qui nous permettent
+   de définir les propriétés que nous souhaitons appliquer à ce stade de l'animation */
+  0% {
+    transform: scaleX(0);
+    opacity: .1;
+  }
+  17% {
+    transform: scaleX(.18);
+  }
+  24% {
+    transform: scaleX(.4);
+    animation-timing-function: cubic-bezier(.9,0,.1,1);
+  }
+  46% {
+    transform: scaleX(.81);
+    animation-timing-function: cubic-bezier(.25,0.25,1,1);
+  }
+  /*nous pouvons attribuer plusieurs pourcentages à un keyframe*/
+  85%,100%{
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+  }
+  /*Imaginons que nous voulions des keyframes de début et de fin sans rien au milieu. Dans ce cas,
+  pas besoin de pourcentage : nous pouvons définir les keyframes en utilisant les mots clés « from »  = 0% et « to » = 100% :
+   from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }*/
+}
+
+.cat {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  overflow: hidden;
+  background-image: url("https://bit.ly/2XJJLKn");
+  background-size: cover;
+  background-position: -20%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: .1rem;
+  font-size: 4vw;
+  font-weight: 900;
+  color: white;
+  animation: cat 1000ms $cat-delay both;
+}
+
+@keyframes cat{
+  0% {
+    transform: translateX(-9999px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+

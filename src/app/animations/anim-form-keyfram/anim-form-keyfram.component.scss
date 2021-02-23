@@ -1,0 +1,71 @@
+/* Variables */
+$cd-txt: #6300a0;
+$cd-box: #B2BBC4;
+$cd-txt--invalid: #fff;
+$cd-danger: #b20a37;
+
+.form {
+  &__group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & input {
+      border: 2px solid $cd-box;
+      border-radius: 100rem;
+      color: $cd-txt;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      padding: .5rem 1rem;
+      width: 100%;
+      order: 1;
+     // transition: background-color 500ms;
+      /* Quand le composant prend le focus */
+      &:focus {
+        border: 2px solid $cd-txt;
+      }
+
+      /*
+       Combinateur d’adjacence + comme "E + F " cible un élément F immédiatement précédé par un élement E
+       Seul le premier élément après E sera ciblé !
+       transform: peut contenir plusieurs fonctions ici le label "email" grandira de 1.5 et se décalera de 10px sur l'axe x.
+      */
+      &:focus + .txt-email {
+        color: $cd-txt;
+        transform: scale(1.5) translateX(10px);
+      }
+      /*
+      :not() est true quand l’input n’est pas :focus.
+      :invalid = true si les données renseignés sont invalides.
+      */
+      &:not(:focus):invalid {
+        background: $cd-danger;
+        border: 2px solid $cd-danger;
+        color: $cd-txt--invalid;
+        /*La propriété  animation-iteration-count permet d'écrire des keyframes d'un seul cycle d'animation
+        et demander au navigateur de les répéter autant de fois que nous le souhaitons.*/
+        //animation-iteration-count: 2;
+        // 2 = animation-iteration-count
+        animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 2;
+      }
+    }
+
+    & .txt-email{
+      transition: transform 400ms;
+      transform: scale(1);
+    }
+  }
+}
+
+$shake-intensity: 2%;
+@keyframes headshake {
+  25% {
+    // entièrement à droite
+    transform: translateX($shake-intensity);
+  }
+  75% {
+    // entièrement à gauche
+    transform: translateX(-$shake-intensity);
+  }
+}

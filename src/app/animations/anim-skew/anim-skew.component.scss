@@ -1,0 +1,42 @@
+$cd-btn: #6FA531;
+$cd-txt: #E0D3DD;
+$bg-rectangle: #20B8C2;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+  &:hover + .rectangles {
+    & > .rectangles--skew {
+      transform: skew(30deg, 30deg);
+    }
+  }
+}
+
+.rectangles {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  &--skew {
+    transition: transform 500ms ease-in-out;
+  }
+}
+
+.rectangles__base {
+  background-color: $bg-rectangle;
+  font-size: 1rem;
+  align-self: center;
+  margin-left: 4rem;
+  height: 100px;
+  width: 50px;
+}

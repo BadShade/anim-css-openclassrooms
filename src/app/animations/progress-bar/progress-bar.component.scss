@@ -1,0 +1,48 @@
+$cd-btn: #6FA531;
+$cd-txt: #E0D3DD;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+.progress{
+  width: 500px;
+  border: solid;
+  height: 20px;
+  padding: 3px;
+    &__bar {
+      /* transform-origin  nous permet de déplacer le centre d'origine de notre transformation,
+      selon les valeurs que nous lui assignons (X, Y) en pourcentage ou px.
+      On peut aussi utiliser des mots clés CSS pour définir les points d’ancrage, comme  left  pour le mettre
+      sur le bord gauche, ou  right  pour le mettre à droite, top, bottom et center */
+      transform-origin: left;
+      transform: scaleX(0);
+      /*La fonction  cubic-bezier  fonctionne comme la fonction  rgb() : on indique une liste de valeurs numériques,
+       mais au lieu de transformer ces chiffres en couleur, la fonction  cubic-bezier  les transforme en courbe
+       d’accélération*/
+      transition: transform 1000ms cubic-bezier(.32,0,.07,1);
+      width: 100%;
+      height: 100%;
+      background-color: #6FA531;
+    }
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+  order: 1;
+  margin-top: 1rem;
+  &:active {
+    & + .progress {
+      & > .progress__bar {
+        transform: scaleX(1);
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+$cd-btn: #6FA531;
+$cd-txt: #E0D3DD;
+$bg-carre: #20B8C2;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+  &:hover + .carre {
+    transform: scale(1);
+    span {
+      transform: translateY(0);
+    }
+  }
+}
+
+.carre {
+  align-self: center;
+  margin-top: 4rem;
+  height: 50px;
+  width: 50px;
+  background: $bg-carre;
+  /*Vous avez peut-être aussi remarqué que le texte n'apparaît pas tant qu'il n'est pas dans la boîte :
+c'est la propriété  overflow: hidden;  qui nous permet cela.*/
+  overflow: hidden;
+  /*L’utilisation de plusieurs fonctions a un bémol : l’ordre dans lequel on assigne les fonctions peut avoir un
+   gros impact sur le résultat final. Il faut savoir que le navigateur effectue les calculs de chaque fonction
+   dans l’ordre, de droite à gauche.*/
+  transform: scale(.1) rotate(-90deg);
+  transition: transform 330ms ease-in-out;
+  span {
+    /*la valeur de display par défaut de  <span>  est inline. Or, transform ne peut pas manipuler d’éléments inline.
+     Nous devons donc modifier le mode d’affichage en "block" ou "inline-block" avant d’obtenir des résultats.*/
+    display: block;
+    transform: translateY(250%);
+    transition: transform 280ms ease-out 50ms;
+  }
+}

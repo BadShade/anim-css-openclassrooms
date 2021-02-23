@@ -1,0 +1,44 @@
+$cd-btn: #B42A8E;
+$cd-txt: #E0D3DD;
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.btn ,.btn2 {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+}
+.btn {
+  &:hover + .carre {
+    /* Ici, nous souhaitons garder un volume constant. Il faut donc affiner la largeur de la boîte en même temps que
+     nous allongeons sa longueur. Passons l’échelle de X à 300 %, et Y à 50 % */
+    transform: scale(3, 0.5);
+  }
+}
+
+.btn2{
+  margin-top: 1rem;
+  &:hover + .carre2{
+    /* Quand on veut modifier l’échelle dans une seule direction, on peut utiliser les fonctions  scaleX()  et
+     scaleY().   scaleX()  permet de modifier un objet horizontalement, et  scaleY()  verticalement. */
+    transform: scaleX(2)
+  }
+}
+
+.carre, .carre2{
+  align-self: center;
+  margin-top: 3rem;
+  height: 50px;
+  width: 50px;
+  background: red;
+  transition: transform 330ms ease-in-out;
+}

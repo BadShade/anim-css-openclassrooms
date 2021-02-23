@@ -1,0 +1,21 @@
+.spin {
+  background-color: #15DEA5;
+  width: 30vh;
+  height: 30vh;
+  //animation-play-state  donne à nos utilisateurs la possibilité d'interagir avec nos animations
+  //paused met en pause l'animation.
+  animation: spin 3s linear infinite paused;
+  &:hover {
+    //Sur le hover on relance l'animation.
+    animation-play-state: running;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

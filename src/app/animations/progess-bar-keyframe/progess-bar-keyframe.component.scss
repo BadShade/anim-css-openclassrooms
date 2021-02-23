@@ -1,0 +1,92 @@
+$cd-btn: #6FA531;
+$cd-txt: #E0D3DD;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+.progress{
+  width: 500px;
+  border: solid;
+  height: 20px;
+  padding: 3px;
+  &__bar {
+    /* transform-origin  nous permet de déplacer le centre d'origine de notre transformation,
+    selon les valeurs que nous lui assignons (X, Y) en pourcentage ou px.
+    On peut aussi utiliser des mots clés CSS pour définir les points d’ancrage, comme  left  pour le mettre
+    sur le bord gauche, ou  right  pour le mettre à droite, top, bottom et center */
+    transform-origin: left;
+    transform: scaleX(0);
+    opacity: 0;
+    /*La fonction  cubic-bezier  fonctionne comme la fonction  rgb() : on indique une liste de valeurs numériques,
+     mais au lieu de transformer ces chiffres en couleur, la fonction  cubic-bezier  les transforme en courbe
+     d’accélération*/
+    transition: transform 1000ms cubic-bezier(.32,0,.07,1);
+    width: 100%;
+    height: 100%;
+    background-color: #6FA531;
+  }
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+  order: 1;
+  margin-top: 1rem;
+  &:active {
+    & + .progress {
+      & > .progress__bar {
+        /*animation-name est une propriété qui permet d'assigner une animationur (la keyframe progress-bar).*/
+        animation-name: progress-bar;
+        /*animation-duration ressemble à transition-duration, et accepte une valeur en ms (millisecondes) ou en s (secondes).*/
+        animation-duration: 1000ms;
+      }
+    }
+  }
+}
+
+/**
+Les @keyframes sont disponibles globalement, donc n'importe quel sélecteur dans notre fichier CSS peut les utiliser.
+Ils ne sont donc pas déclarés dans un sélecteur. Ils sont déclarés à la base du fichier css en utilisant l'opérateur
+ @keyframe, suivi du nom de notre choix, entre accolades ouverte et fermée.
+ Lorsque nous utilisons la règle @keyframes, nous déclarons un ensemble de keyframes.
+ Quelles que soient les propriétés CSS que nous plaçons à l'intérieur de notre animation  @keyframes,
+  elles remplaceront toutes les propriétés CSS existantes sur le sélecteur où elles sont assignées!
+ */
+@keyframes progress-bar {
+  /* Chaque keyframe est défini en utilisant son pourcentage, puis sa propre paire d'accolades qui nous permettent
+   de définir les propriétés que nous souhaitons appliquer à ce stade de l'animation */
+  0% {
+    transform: scaleX(0);
+  }
+  17% {
+    transform: scaleX(.18);
+  }
+  24% {
+    transform: scaleX(.4);
+  }
+  46% {
+    transform: scaleX(.81);
+  }
+  /*nous pouvons attribuer plusieurs pourcentages à un keyframe*/
+  85%,100%{
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+  }
+  /*Imaginons que nous voulions des keyframes de début et de fin sans rien au milieu. Dans ce cas,
+  pas besoin de pourcentage : nous pouvons définir les keyframes en utilisant les mots clés « from »  = 0% et « to » = 100% :
+   from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }*/
+}

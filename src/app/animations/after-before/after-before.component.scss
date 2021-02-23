@@ -1,0 +1,48 @@
+$mint: #15dea5;
+$navy: #022F40;
+
+.opacity {
+  margin:300px auto;
+  display: flex;
+  width: 75%;
+  align-items: center !important;
+  justify-content: center !important;
+  font-style: italic !important;
+  font-weight: 800 !important;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+
+  .btn {
+    border-radius: 25px;
+    background-color: $mint;
+    font-size: 45px !important;
+    padding: 30px 45px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    &:hover {
+      border-radius: 25px;
+      &::after {
+        border-radius: 25px;
+        opacity: 1;
+      }
+    }
+    /*La création d’un pseudoélément est identique à celle d’une pseudoclasse : on ajoute le pseudoélément à un
+    sélecteur, mais au lieu d’utiliser comme préfixe les deux points ( : ), un pseudoélément en utilise deux ( :: )*/
+    &::after {
+      border-radius: 25px;
+      /*La propriété content est indispensable au fonctionnement des pseudoéléments.
+      Elle permet de remplir un pseudoélément de texte ou d’images. Si c'est pour un fond il faut au minimum avoir ""*/
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: radial-gradient(circle, lighten($mint, 5) 0%, darken($mint, 10) 100%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 250ms;
+    }
+  }
+}

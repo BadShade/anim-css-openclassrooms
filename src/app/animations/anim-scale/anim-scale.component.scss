@@ -1,0 +1,47 @@
+/* Variables */
+$cd-btn: #011c37;
+$cd-txt: #15DEA5;
+$ball-size: 1rem;
+
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 10rem;
+  /* la fonction  scale()  permet de modifier la taille d’un élément, selon la valeur qu’on lui donne, sachant que 0 = 0 % et 1 = 100 %*/
+  transform: scale(1);
+  /* transition-property: transform;*/
+  /* Valeur en secondes avec s ou en milisecondes avec ms*/
+  /* transition-duration: 400ms;*/
+  /* La propriété transition combine les deux propriétés : transition-property et transition-duration */
+  transition: transform 400ms;
+  /* Hover est une pseudoclasses*/
+  &:hover {
+    transform: scale(1.15);
+  }
+  /*  Combinateur d’adjacence + comme "E + F " cible un élément F immédiatement précédé par un élement E
+      Seul le premier élément après E sera ciblé !*/
+  &:hover + .ball{
+    transform: scale(4);
+  }
+}
+
+.ball {
+  width: $ball-size;
+  height: $ball-size;
+  background: $cd-txt;
+  margin-top: 3rem;
+  border-radius: $ball-size * 3;
+  align-self: center;
+  transition: transform 4000ms;
+}

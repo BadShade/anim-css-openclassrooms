@@ -1,0 +1,34 @@
+$cd-btn: #6FA531;
+$cd-txt: #E0D3DD;
+$bg-carre: #20B8C2;
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.btn {
+  height: 20px;
+  background: $cd-btn;
+  color: $cd-txt;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  text-align: center;
+  &:hover + .carre {
+    /* translate()  prend deux valeurs en paramètres. La première indique la distance à laquelle on veut se déplacer
+     sur l’axe X, et la seconde la distance sur l’axe Y. Elle accepte différentes unités, comme  les px, les vh ou les em */
+    transform: translate(150px, -7vh);
+  }
+}
+
+.carre{
+  align-self: center;
+  margin-top: 4rem;
+  height: 50px;
+  width: 50px;
+  background: $bg-carre;
+  transition: transform 330ms ease-in-out;
+}

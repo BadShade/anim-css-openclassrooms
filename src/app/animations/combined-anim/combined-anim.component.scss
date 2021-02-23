@@ -1,0 +1,33 @@
+/* Variable */
+$cd-btn: #011c37;
+$cd-txt: #15B789;
+$cd-btn-start: rgba(1, 28, 55, 0);
+$cd-btn-end: rgba(1, 28, 55, 1);
+
+
+.btn {
+  color: $cd-txt;
+  background-color: $cd-btn-start;
+  border: 4px solid $cd-btn;
+  border-radius: 10rem;
+  cursor: pointer;
+  font-size: 1rem;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  position: relative;
+  /* Le mot clé all nous permet d’indiquer au navigateur d’appliquer la transition à toutes les propriétés
+  que nous avons modifiées au sein de la pseudoclasse  :hover.*/
+  //transition: all 450ms;
+  /*Au lieu d’utiliser  all, nous pouvons faire une liste des animations de chaque propriété à laquelle
+   nous voulons ajouter une transition, séparées par des virgules. */
+  //transition: transform 450ms, background-color 300ms;
+  /*La propriété transition-delay retarde le début de l’animation de transition par la valeur de temps que vous indiquez
+  Ici, transition  concerne deux propriétés différentes. Il faut donc spécifier une valeur pour chacune d’elles.
+   Attention à bien respecter l'ordre qu'on a utilisé juste avant pour préciser la durée de chaque propriété.*/
+  //transition-delay: 0ms, 150ms;
+  transition: transform 450ms, background-color 300ms 150ms;
+  &:hover {
+    transform: scale(1.13);
+    background-color: $cd-btn-end;
+  }
+}

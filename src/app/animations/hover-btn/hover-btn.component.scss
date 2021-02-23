@@ -1,0 +1,66 @@
+
+
+.container {
+  font-family: 'Lato', sans-serif;
+  background: #2175d9;
+  color: #FFF;
+  width: 300px;
+
+}
+
+/* Global Button Styles */
+
+a.animated-button{
+  width: 100px;
+  background-color: #2175d9;
+  position: relative;
+  display: flex;
+  margin: 30px auto 0;
+  padding: 14px 15px;
+  color: #fff;
+  font-size:14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.75);
+  &::after{
+    content: "";
+    position: absolute;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    width: 150%;
+    z-index: 1;
+    -webkit-transition: all 0.75s ease 0s;
+    -moz-transition: all 0.75s ease 0s;
+    -o-transition: all 0.75s ease 0s;
+    transition: all 0.75s ease 0s;
+    background: #a6d4ee;
+    opacity: .5;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  & span{
+    z-index: 10;
+  }
+
+  &:hover{
+    background-color:transparent;
+  }
+
+  &:hover span{
+    color:black;
+  }
+
+  &:hover:after {
+    height: 140%;
+    opacity: 1;
+  }
+}
