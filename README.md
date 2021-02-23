@@ -1,6 +1,8 @@
 # CssAnimations
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+Projet utilisé en suivant le cours "Créez des animations CSS modernes" du site openclassrooms.
+https://openclassrooms.com/fr/courses/5919246-creez-des-animations-css-modernes/6340912-decouvrez-les-animations-web
 
 ## Development server
 
